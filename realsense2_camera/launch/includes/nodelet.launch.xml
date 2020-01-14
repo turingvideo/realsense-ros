@@ -4,10 +4,10 @@
   <arg name="serial_no"           default=""/>
   <arg name="usb_port_id"         default=""/>
   <arg name="device_type"         default=""/>
-  <arg name="tf_prefix"           default=""/>
+  <arg name="tf_prefix"           default="/"/>
   <arg name="json_file_path"      default=""/>
   <arg name="rosbag_filename"     default=""/>
-  <arg name="required"            default="false"/>
+  <arg name="required"            default="true"/>
 
   <arg name="fisheye_width"       default="0"/>
   <arg name="fisheye_height"      default="0"/>
@@ -17,16 +17,16 @@
 
   <arg name="depth_width"         default="640"/>
   <arg name="depth_height"        default="480"/>
-  <arg name="enable_depth"        default="true"/>
+  <arg name="enable_depth"        default="false"/>
 
   <arg name="infra_width"         default="640"/>
   <arg name="infra_height"        default="480"/>
-  <arg name="enable_infra1"       default="true"/>
-  <arg name="enable_infra2"       default="true"/>
+  <arg name="enable_infra1"       default="false"/>
+  <arg name="enable_infra2"       default="false"/>
 
   <arg name="color_width"         default="640"/>
   <arg name="color_height"        default="480"/>
-  <arg name="enable_color"        default="true"/>
+  <arg name="enable_color"        default="false"/>
 
   <arg name="fisheye_fps"         default="30"/>
   <arg name="depth_fps"           default="30"/>
@@ -34,14 +34,14 @@
   <arg name="color_fps"           default="30"/>
   <arg name="gyro_fps"            default="0"/>
   <arg name="accel_fps"           default="0"/>
-  <arg name="enable_gyro"         default="true"/>
-  <arg name="enable_accel"        default="true"/>
+  <arg name="enable_gyro"         default="false"/>
+  <arg name="enable_accel"        default="false"/>
 
   <arg name="enable_pointcloud"   default="false"/>
   <arg name="pointcloud_texture_stream" default="RS2_STREAM_COLOR"/>  <!-- use RS2_STREAM_ANY to avoid using texture -->
   <arg name="pointcloud_texture_index"  default="0"/>
 
-  <arg name="enable_sync"         default="false"/>
+  <arg name="enable_sync"         default="true"/>
   <arg name="align_depth"         default="false"/>
 
   <arg name="base_frame_id"             default="$(arg tf_prefix)_link"/>
@@ -54,7 +54,7 @@
   <arg name="fisheye2_frame_id"         default="$(arg tf_prefix)_fisheye2_frame"/>
   <arg name="accel_frame_id"            default="$(arg tf_prefix)_accel_frame"/>
   <arg name="gyro_frame_id"             default="$(arg tf_prefix)_gyro_frame"/>
-  <arg name="pose_frame_id"             default="$(arg tf_prefix)_pose_frame"/>
+  <arg name="pose_frame_id"             default="camera_base_link"/>
 
   <arg name="depth_optical_frame_id"    default="$(arg tf_prefix)_depth_optical_frame"/>
   <arg name="infra1_optical_frame_id"   default="$(arg tf_prefix)_infra1_optical_frame"/>
@@ -75,12 +75,12 @@
   <arg name="aligned_depth_to_fisheye1_frame_id" default="$(arg tf_prefix)_aligned_depth_to_fisheye1_frame"/>
   <arg name="aligned_depth_to_fisheye2_frame_id" default="$(arg tf_prefix)_aligned_depth_to_fisheye2_frame"/>
 
-  <arg name="publish_tf"               default="true"/>
+  <arg name="publish_tf"               default="false"/>
   <arg name="tf_publish_rate"          default="0"/> <!-- 0 - static transform -->
 
-  <arg name="odom_frame_id"            default="$(arg tf_prefix)_odom_frame"/>
-  <arg name="topic_odom_in"            default="$(arg tf_prefix)/odom_in"/>
-  <arg name="calib_odom_file"          default=""/>
+  <arg name="odom_frame_id"            default="camera_odom_link"/>
+  <arg name="topic_odom_in"            default="/odom"/>
+  <arg name="calib_odom_file"          default="/etc/ros_ws/install_isolated/share/rplidar_talker/configs/calibration_odometry.json"/>
   <arg name="publish_odom_tf"          default="true"/>
   <arg name="filters"                  default=""/>
   <arg name="clip_distance"            default="-1"/>
@@ -176,6 +176,5 @@
     <param name="initial_reset"            type="bool"   value="$(arg initial_reset)"/>
     <param name="unite_imu_method"         type="str"    value="$(arg unite_imu_method)"/>
     <param name="allow_no_texture_points"  type="bool"   value="$(arg allow_no_texture_points)"/>
-
   </node>
 </launch>
