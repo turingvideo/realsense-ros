@@ -54,7 +54,7 @@
   <arg name="fisheye2_frame_id"         default="$(arg tf_prefix)_fisheye2_frame"/>
   <arg name="accel_frame_id"            default="$(arg tf_prefix)_accel_frame"/>
   <arg name="gyro_frame_id"             default="$(arg tf_prefix)_gyro_frame"/>
-  <arg name="pose_frame_id"             default="camera_base_link"/>
+  <arg name="pose_frame_id"             default="camera_base_frame"/>
 
   <arg name="depth_optical_frame_id"    default="$(arg tf_prefix)_depth_optical_frame"/>
   <arg name="infra1_optical_frame_id"   default="$(arg tf_prefix)_infra1_optical_frame"/>
@@ -78,7 +78,7 @@
   <arg name="publish_tf"               default="false"/>
   <arg name="tf_publish_rate"          default="0"/> <!-- 0 - static transform -->
 
-  <arg name="odom_frame_id"            default="camera_odom_link"/>
+  <arg name="odom_frame_id"            default="camera_odom_frame"/>
   <arg name="topic_odom_in"            default="/odom"/>
   <arg name="calib_odom_file"          default="/etc/ros_ws/install_isolated/share/rplidar_talker/configs/calibration_odometry.json"/>
   <arg name="publish_odom_tf"          default="true"/>
